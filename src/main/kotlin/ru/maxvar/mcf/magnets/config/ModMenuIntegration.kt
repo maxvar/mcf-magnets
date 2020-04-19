@@ -36,7 +36,8 @@ class MyConfigScreenFactory() : ConfigScreenFactory<Screen> {
                             ConfigEntryBuilder.create()
                                 .startIntField("Collection range", config.range)
                                 .setDefaultValue(5)
-                                .setSaveConsumer { config.range = it ?: 5 }.build()
+                                .setMin(1).setMax(50)
+                                .setSaveConsumer { config.range = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()

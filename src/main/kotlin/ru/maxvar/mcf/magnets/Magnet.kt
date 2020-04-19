@@ -24,7 +24,7 @@ fun tryToCollect(player: PlayerEntity) {
         player.world.getEntities(Entity::class.java, box) {
             when (it) {
                 is ItemEntity -> !it.cannotPickup()
-                is ExperienceOrbEntity -> config.collectXp
+                is ExperienceOrbEntity -> config.collectXp && it.pickupDelay == 0
                 else -> false
             }
         }
