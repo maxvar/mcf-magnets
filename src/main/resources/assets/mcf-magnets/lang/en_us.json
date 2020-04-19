@@ -1,3 +1,4 @@
 {
-  "enchantment.mcf-magnets.magnet_enchantment": "Magnetic force"
+  "enchantment.mcf-magnets.magnet_enchantment": "Magnetic force",
+  "config.mcf-magnets.title": "Magnetic settings"
 }

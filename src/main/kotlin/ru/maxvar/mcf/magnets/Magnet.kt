@@ -3,6 +3,7 @@ package ru.maxvar.mcf.magnets
 import net.minecraft.entity.Entity
 import net.minecraft.entity.ExperienceOrbEntity
 import net.minecraft.entity.ItemEntity
+import net.minecraft.entity.MovementType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.math.Box
 import net.minecraft.util.math.Vec3d
@@ -28,15 +29,20 @@ fun tryToCollect(player: PlayerEntity) {
             }
         }
     items.forEach {
+        val entityPos: Vec3d = it.pos
         if (config.pull) {
-            val entityPos: Vec3d = it.pos
             it.addVelocity(
-                (playerPos.x - entityPos.x) * 0.08,
-                (playerPos.y - entityPos.y) * 0.08,
-                (playerPos.z - entityPos.z) * 0.08
+                (playerPos.x - entityPos.x) * 0.01,
+                (playerPos.y - entityPos.y) * 0.01,
+                (playerPos.z - entityPos.z) * 0.01
             )
         } else {
-            it.setPos(playerPos.x, playerPos.y, playerPos.z)
+            val movement = Vec3d(
+                playerPos.x - entityPos.x,
+                playerPos.y - entityPos.y,
+                playerPos.z - entityPos.z
+            )
+            it.move(MovementType.SELF, movement)
         }
     }
 }
