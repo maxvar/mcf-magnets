@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.math.Box
 import net.minecraft.util.math.Vec3d
 import ru.maxvar.mcf.magnets.config.ConfigManager
+import kotlin.math.absoluteValue
 
 fun tryToCollect(player: PlayerEntity) {
     val config = ConfigManager.config
@@ -31,10 +32,11 @@ fun tryToCollect(player: PlayerEntity) {
     items.forEach {
         val entityPos: Vec3d = it.pos
         if (config.pull) {
+            val strength = config.range.toDouble()
             it.addVelocity(
-                (playerPos.x - entityPos.x) * 0.01,
-                (playerPos.y - entityPos.y) * 0.01,
-                (playerPos.z - entityPos.z) * 0.01
+                force(playerPos.x - entityPos.x, strength),
+                force(playerPos.y - entityPos.y, strength),
+                force(playerPos.z - entityPos.z, strength)
             )
         } else {
             val movement = Vec3d(
@@ -46,3 +48,10 @@ fun tryToCollect(player: PlayerEntity) {
         }
     }
 }
+
+private fun force(distance: Double, strength: Double): Double =
+    when {
+        distance.absoluteValue > strength -> distance.times(0.01f)
+        distance.absoluteValue > strength.div(2) -> distance.times(0.05f)
+        else -> distance.times(0.1f)
+    }

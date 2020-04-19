@@ -19,26 +19,28 @@ class ConfigManager {
     companion object {
         var config: Config = Config()
 
-        fun load(): Config {
+        private fun load(): Config {
+            LOGGER.info("Loading config from $configPath...")
             Files.newBufferedReader(configPath).use { reader: BufferedReader? ->
                 return GSON.fromJson(reader, Config::class.java)
             }
         }
 
         fun save() {
-            LOGGER.info("Saving config to $configPath...")
+            LOGGER.info("Saving $MOD_ID config to $configPath...")
+            LOGGER.debug("Config is $config")
             Files.newBufferedWriter(configPath).use {
                 GSON.toJson(config, it)
             }
-            LOGGER.info("Saving done")
         }
 
         fun init() {
             if (!Files.exists(configPath)) {
-                LOGGER.info("Creating config file (${configPath})")
+                LOGGER.info("Creating $MOD_ID config file (${configPath})")
                 save()
             }
             config = load()
+            LOGGER.info("Loaded $MOD_ID config: $config")
         }
     }
 }

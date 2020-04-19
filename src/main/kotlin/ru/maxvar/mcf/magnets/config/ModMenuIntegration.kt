@@ -8,14 +8,12 @@ import net.minecraft.client.gui.screen.Screen
 import ru.maxvar.mcf.magnets.Mod.MOD_ID
 
 @Suppress("unused")
-class ModMenuIntegration() : ModMenuApi {
+class ModMenuIntegration : ModMenuApi {
     override fun getModId(): String = MOD_ID
 
     override fun getModConfigScreenFactory(): ConfigScreenFactory<*> {
         return MyConfigScreenFactory()
     }
-
-
 }
 
 class MyConfigScreenFactory() : ConfigScreenFactory<Screen> {
@@ -29,26 +27,22 @@ class MyConfigScreenFactory() : ConfigScreenFactory<Screen> {
                         .addEntry(
                             ConfigEntryBuilder.create()
                                 .startBooleanToggle("Enabled", config.enabled)
-                                .setDefaultValue(true)
                                 .setSaveConsumer { config.enabled = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()
                                 .startIntField("Collection range", config.range)
-                                .setDefaultValue(5)
                                 .setMin(3).setMax(50)
                                 .setSaveConsumer { config.range = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()
                                 .startBooleanToggle("Collect XP orbs", config.collectXp)
-                                .setDefaultValue(true)
-                                .setSaveConsumer { config.collectXp }.build()
+                                .setSaveConsumer { config.collectXp = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()
                                 .startBooleanToggle("Pull towards player (disabled = teleport to player)", config.pull)
-                                .setDefaultValue(true)
                                 .setSaveConsumer { config.pull = it }.build()
                         )
                     setSavingRunnable {
