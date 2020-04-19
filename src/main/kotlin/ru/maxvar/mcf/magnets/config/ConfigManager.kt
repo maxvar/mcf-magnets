@@ -27,7 +27,9 @@ class ConfigManager {
 
         fun save() {
             LOGGER.info("Saving config to $configPath...")
-            GSON.toJson(config, Files.newBufferedWriter(configPath))
+            Files.newBufferedWriter(configPath).use {
+                GSON.toJson(config, it)
+            }
             LOGGER.info("Saving done")
         }
 
