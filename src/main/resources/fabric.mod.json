@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "mcf-magnets",
+  "version": "${version}",
+  "name": "mcf-magnets Mod",
+  "description": "collection of magnetic staff to easy items collection",
+  "authors": [
+    "max@maxvar.ru"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/mcf-magnets",
+    "sources": "https://github.com/maxvar/mcf-magnets"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/mcf-magnets/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "ru.maxvar.mcf.magnets.Mod"
+      }
+    ],
+    "modmenu": [
+      "ru.maxvar.mcf.magnets.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "mcf-magnets.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.1",
+    "fabric": "*",
+    "fabric-language-kotlin": "*",
+    "minecraft": "1.15.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
