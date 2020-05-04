@@ -1,7 +1,8 @@
 plugins {
-    id 'fabric-loom'
-    id 'maven-publish'
-    id "org.jetbrains.kotlin.jvm"
+    id "fabric-loom" version "${loom_version}"
+    id "maven-publish"
+    id "org.jetbrains.kotlin.jvm" version "$kotlin_version"
+    id "org.jetbrains.kotlin.plugin.serialization" version "$kotlin_version"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -28,9 +29,13 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    //kotlin language plugin for fabric (mod)
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+
+    //modmenu api
     modImplementation "io.github.prospector:modmenu:${project.fabric_modmenu_version}"
 
+    //cloth-config api and bundles library
     modImplementation "me.shedaniel.cloth:config-2:${project.fabric_cloth_config_version}"
     include "me.shedaniel.cloth:config-2:${project.fabric_cloth_config_version}"
 
