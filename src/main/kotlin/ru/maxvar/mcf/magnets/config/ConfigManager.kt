@@ -1,18 +1,12 @@
 package ru.maxvar.mcf.magnets.config
 
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
-
+import kotlinx.serialization.json.Json
 import net.fabricmc.loader.api.FabricLoader
 import ru.maxvar.mcf.magnets.Mod.LOGGER
 import ru.maxvar.mcf.magnets.Mod.MOD_ID
-import java.io.BufferedReader
 import java.nio.file.Files
 
 private val configPath = FabricLoader.getInstance().configDirectory.toPath().resolve("${MOD_ID}.json")
-
-private val GSON =
-    GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setPrettyPrinting().create()
 
 class ConfigManager {
 
@@ -21,17 +15,13 @@ class ConfigManager {
 
         private fun load(): Config {
             LOGGER.info("Loading config from $configPath...")
-            Files.newBufferedReader(configPath).use { reader: BufferedReader? ->
-                return GSON.fromJson(reader, Config::class.java)
-            }
+            return Json.parse(Config.serializer(), Files.readString(configPath))
         }
 
         fun save() {
             LOGGER.info("Saving $MOD_ID config to $configPath...")
             LOGGER.debug("Config is $config")
-            Files.newBufferedWriter(configPath).use {
-                GSON.toJson(config, it)
-            }
+            Files.writeString(configPath, Json.stringify(Config.serializer(), config))
         }
 
         fun init() {
