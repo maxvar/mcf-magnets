@@ -1,6 +1,3 @@
-import net.fabricmc.loom.task.RemapJarTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 //Fabric Properties
 //Check these on https://modmuss50.me/fabric.html
 val minecraftVersion = "1.15.2"
@@ -55,36 +52,27 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-tasks.withType<JavaCompile> {
+tasks.compileJava {
     options.encoding = "UTF-8"
 }
 
-tasks.withType<KotlinCompile> {
+tasks.compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
-tasks.withType<Jar> {
+tasks.processResources {
+    filesMatching("**/fabric.mod.json") {
+        println("$sourcePath:$sourceName")
+        expand("version" to modVersion)
+    }
+}
+
+tasks.jar {
     archiveVersion.set("$modVersion-$minecraftVersion")
 }
 
-tasks.withType<RemapJarTask> {
+tasks.remapJar {
     archiveVersion.set("$modVersion-$minecraftVersion")
 }
-
-//processResources {
-
-//    inputs.property "version", project.version
-//
-//    from(sourceSets.main.resources.srcDirs) {
-//        include "fabric.mod.json"
-//        expand "version": project.version
-//    }
-//
-//    from(sourceSets.main.resources.srcDirs) {
-//        exclude "fabric.mod.json"
-//    }
-//}
-//
-//
