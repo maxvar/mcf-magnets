@@ -22,10 +22,10 @@ fun tryToCollect(player: PlayerEntity) {
         playerPos.x - range, playerPos.y - range, playerPos.z - range
     )
     val items: List<Entity> =
-        player.world.getEntities(Entity::class.java, box) {
+        player.world.getEntitiesByClass(Entity::class.java, box) {
             when (it) {
                 is ItemEntity -> !it.cannotPickup()
-                is ExperienceOrbEntity -> config.collectXp && it.pickupDelay == 0
+                is ExperienceOrbEntity -> config.collectXp
                 else -> false
             }
         }

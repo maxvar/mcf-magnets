@@ -19,15 +19,3 @@ object Mod : ModInitializer {
         LOGGER.info("$MOD_ID init done")
     }
 }
-
-fun setupEnchantments() {
-    Registry.register(
-        Registry.ENCHANTMENT,
-        Identifier(Mod.MOD_ID, MAGNET_ENCHANTMENT_NAME),
-        MagnetEnchantment(
-            Enchantment.Weight.UNCOMMON,
-            EnchantmentTarget.WEARABLE,
-            arrayOf(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)
-        )
-    )
-}

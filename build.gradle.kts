@@ -1,11 +1,11 @@
 //Fabric Properties
 //Check these on https://modmuss50.me/fabric.html
-val minecraftVersion = "1.15.2"
-val yarnMappingsVersion = "1.15.2+build.15"
-val fabricLoaderVersion = "0.8.2+build.194"
+val minecraftVersion = "1.17"
+val yarnMappingsVersion = "1.17+build.13"
+val fabricLoaderVersion = "0.11.6"
 //Fabric api
-val fabricApiVersion = "0.5.1+build.294-1.15"
-val loomVersion = "0.2.7-SNAPSHOT"
+val fabricApiVersion = "0.35.2+1.17"
+val loomVersion = "0.6-SNAPSHOT"
 
 //Mod Properties
 val modVersion = "1.1.0"
@@ -13,22 +13,23 @@ val mavenGroupId = "ru.maxvar"
 val archivesBaseName = "mcf-magnets"
 
 //Kotlin and fabric-language-kotlin
-val kotlinVersion = "1.3.61"
-val fabricKotlinVersion = "1.3.61+build.1"
+val kotlinVersion = "1.5.10"
+val fabricKotlinVersion = "1.6.1+kotlin.1.5.10"
 //Mod Dependencies
-val fabricModMenuVersion = "1.10.2+build.35"
-val fabricClothConfigVersion = "2.5.4"
+val fabricModMenuVersion = "2.0.2"
+val fabricClothConfigVersion = "5.0.34"
 
 plugins {
     java
-    kotlin("jvm") version "1.3.61"
-    kotlin("plugin.serialization") version "1.3.61"
-    id("fabric-loom") version "0.2.7-SNAPSHOT"
+    kotlin("jvm") version "1.5.10" //match with above kotlinVersion
+    kotlin("plugin.serialization") version "1.5.10" //match with above kotlinVersion
+    id("fabric-loom") version "0.6-SNAPSHOT"
 }
 
 repositories {
     maven(url = "https://maven.fabricmc.net/") { name = "Fabric MC" }
-    jcenter()
+    maven(url = "https://maven.shedaniel.me/") { name = "shedaniel" }
+    maven(url = "https://maven.terraformersmc.com") { name = "modmenu" }
 }
 
 dependencies {
@@ -38,18 +39,20 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
     // ModMenu api
-    modImplementation("io.github.prospector:modmenu:$fabricModMenuVersion")
+    modImplementation("com.terraformersmc:modmenu:$fabricModMenuVersion")
     // Cloth-config api + bundle this library in assembly
-    modImplementation("me.shedaniel.cloth:config-2:$fabricClothConfigVersion")
-    include("me.shedaniel.cloth:config-2:$fabricClothConfigVersion")
+    modApi("me.shedaniel.cloth:cloth-config-fabric:$fabricClothConfigVersion") {
+        exclude(group = "net.fabricmc.fabric-api")
+    }
+//    include("me.shedaniel.cloth:cloth-config-fabric:$fabricClothConfigVersion")
 
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
 }
 
 tasks.compileJava {

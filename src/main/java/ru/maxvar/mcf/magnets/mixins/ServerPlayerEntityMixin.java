@@ -3,6 +3,7 @@ package ru.maxvar.mcf.magnets.mixins;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,8 +17,8 @@ import static ru.maxvar.mcf.magnets.MagnetKt.tryToCollect;
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
     //ignore this
-    public ServerPlayerEntityMixin(World world, GameProfile profile) {
-        super(world, profile);
+    public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
+        super(world, pos, yaw, profile);
     }
 
     @Inject(method = "tick", at = @At("HEAD"))

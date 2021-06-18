@@ -6,7 +6,7 @@ import ru.maxvar.mcf.magnets.Mod.LOGGER
 import ru.maxvar.mcf.magnets.Mod.MOD_ID
 import java.nio.file.Files
 
-private val configPath = FabricLoader.getInstance().configDirectory.toPath().resolve("${MOD_ID}.json")
+private val configPath = FabricLoader.getInstance().configDir.resolve("${MOD_ID}.json")
 
 class ConfigManager {
 
@@ -15,13 +15,13 @@ class ConfigManager {
 
         private fun load(): Config {
             LOGGER.info("Loading config from $configPath...")
-            return Json.parse(Config.serializer(), Files.readString(configPath))
+            return Json.decodeFromString(Config.serializer(), Files.readString(configPath))
         }
 
         fun save() {
             LOGGER.info("Saving $MOD_ID config to $configPath...")
             LOGGER.debug("Config is $config")
-            Files.writeString(configPath, Json.stringify(Config.serializer(), config))
+            Files.writeString(configPath, Json.encodeToString(Config.serializer(), config))
         }
 
         fun init() {
