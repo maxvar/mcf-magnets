@@ -1,11 +1,11 @@
 //Fabric Properties
 //Check these on https://modmuss50.me/fabric.html
-val minecraftVersion = "1.17"
-val yarnMappingsVersion = "1.17+build.13"
-val fabricLoaderVersion = "0.11.6"
+val minecraftVersion = "1.18"
+val yarnMappingsVersion = "1.18+build.1"
+val fabricLoaderVersion = "0.12.8"
 //Fabric api
-val fabricApiVersion = "0.35.2+1.17"
-val loomVersion = "0.6-SNAPSHOT"
+val fabricApiVersion = "0.44.0+1.18"
+val loomVersion = "0.10-SNAPSHOT"
 
 //Mod Properties
 val modVersion = "1.1.0"
@@ -13,17 +13,17 @@ val mavenGroupId = "ru.maxvar"
 val archivesBaseName = "mcf-magnets"
 
 //Kotlin and fabric-language-kotlin
-val kotlinVersion = "1.5.10"
-val fabricKotlinVersion = "1.6.1+kotlin.1.5.10"
+val kotlinVersion = "1.6.0"
+val fabricKotlinVersion = "1.7.0+kotlin.1.6.0"
 //Mod Dependencies
-val fabricModMenuVersion = "2.0.2"
-val fabricClothConfigVersion = "5.0.34"
+val fabricModMenuVersion = "3.0.0"
+val fabricClothConfigVersion = "6.0.42"
 
 plugins {
     java
-    kotlin("jvm") version "1.5.10" //match with above kotlinVersion
-    kotlin("plugin.serialization") version "1.5.10" //match with above kotlinVersion
-    id("fabric-loom") version "0.6-SNAPSHOT"
+    kotlin("jvm") version "1.6.0" //match with above kotlinVersion
+    kotlin("plugin.serialization") version "1.6.0" //match with above kotlinVersion
+    id("fabric-loom") version "0.10-SNAPSHOT"
 }
 
 repositories {
@@ -44,7 +44,6 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:$fabricClothConfigVersion") {
         exclude(group = "net.fabricmc.fabric-api")
     }
-//    include("me.shedaniel.cloth:cloth-config-fabric:$fabricClothConfigVersion")
 
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
@@ -56,12 +55,15 @@ java {
 }
 
 tasks.compileJava {
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
     options.encoding = "UTF-8"
+
 }
 
 tasks.compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
