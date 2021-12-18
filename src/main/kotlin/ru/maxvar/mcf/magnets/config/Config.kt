@@ -8,6 +8,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Config(
     /**
+     * added for compatibility
+     */
+    var version: Int = 0,
+    /**
      * TRUE enables magnetic effect
      */
     var enabled: Boolean = true,
@@ -21,6 +25,11 @@ data class Config(
     var collectXp: Boolean = true,
     /**
      * TRUE pulls items, FALSE "teleports" them to player
+     * @deprecated being replaced with collectionOption
      */
-    var pull: Boolean = true
+    var pull: Boolean = true,
+    /**
+     * Pulls items or "teleports" or injects into inventory
+     */
+    var collectionOption: CollectionOption = CollectionOption.PULL
 )

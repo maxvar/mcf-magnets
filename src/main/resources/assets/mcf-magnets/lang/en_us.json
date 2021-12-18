@@ -1,4 +1,11 @@
 {
-  "enchantment.mcf-magnets.magnet_enchantment": "Magnetic force",
-  "config.mcf-magnets.title": "Magnetic settings"
+  "mcf-magnets.config.title": "Magnet settings",
+  "mcf-magnets.config.category.general": "General settings",
+  "mcf-magnets.config.enabled": "Enabled",
+  "mcf-magnets.config.collection.range": "Collection range",
+  "mcf-magnets.config.collect.xp": "Collect XP orbs",
+  "mcf-magnets.config.collection.option": "Collection option",
+  "mcf-magnets.config.collection.option.pull": "Pull",
+  "mcf-magnets.config.collection.option.teleport": "Teleport",
+  "mcf-magnets.config.collection.option.inject": "Inject"
 }

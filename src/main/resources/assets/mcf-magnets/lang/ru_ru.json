@@ -1,0 +1,11 @@
+{
+  "mcf-magnets.config.title": "Настройки магнита",
+  "mcf-magnets.config.category.general": "Общие настройки",
+  "mcf-magnets.config.enabled": "Включен",
+  "mcf-magnets.config.collection.range": "Дальность действия",
+  "mcf-magnets.config.collect.xp": "Собирать шары опыта",
+  "mcf-magnets.config.collection.option": "Способ сбора",
+  "mcf-magnets.config.collection.option.pull": "Притягивание",
+  "mcf-magnets.config.collection.option.teleport": "Телепорт",
+  "mcf-magnets.config.collection.option.inject": "В инвентарь"
+}

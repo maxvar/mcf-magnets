@@ -5,8 +5,7 @@ import com.terraformersmc.modmenu.api.ModMenuApi
 import me.shedaniel.clothconfig2.api.ConfigBuilder
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder
 import net.minecraft.client.gui.screen.Screen
-import net.minecraft.text.Text
-import ru.maxvar.mcf.magnets.Mod.MOD_ID
+import net.minecraft.text.TranslatableText
 
 @Suppress("unused")
 class ModMenuIntegration : ModMenuApi {
@@ -21,29 +20,42 @@ class MyConfigScreenFactory() : ConfigScreenFactory<Screen> {
         val config = ConfigManager.config
         val builder =
             ConfigBuilder.create().setParentScreen(parent)
-                .setTitle(Text.of("config.$MOD_ID.title"))
+                .setTitle(TranslatableText("mcf-magnets.config.title"))
                 .apply {
-                    getOrCreateCategory(Text.of("general"))
+                    getOrCreateCategory(TranslatableText("mcf-magnets.config.category.general"))
                         .addEntry(
                             ConfigEntryBuilder.create()
-                                .startBooleanToggle(Text.of("Enabled"), config.enabled)
+                                .startBooleanToggle(
+                                    TranslatableText("mcf-magnets.config.enabled"), config.enabled
+                                )
                                 .setSaveConsumer { config.enabled = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()
-                                .startIntField(Text.of("Collection range"), config.range)
+                                .startIntField(
+                                    TranslatableText("mcf-magnets.config.collection.range"), config.range
+                                )
                                 .setMin(3).setMax(50)
                                 .setSaveConsumer { config.range = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()
-                                .startBooleanToggle(Text.of("Collect XP orbs"), config.collectXp)
+                                .startBooleanToggle(TranslatableText("mcf-magnets.config.collect.xp"), config.collectXp)
                                 .setSaveConsumer { config.collectXp = it }.build()
                         )
                         .addEntry(
                             ConfigEntryBuilder.create()
-                                .startBooleanToggle(Text.of("Pull towards player (disabled = teleport to player)"), config.pull)
-                                .setSaveConsumer { config.pull = it }.build()
+                                .startEnumSelector(
+                                    TranslatableText("mcf-magnets.config.collection.option"),
+                                    CollectionOption::class.java,
+                                    config.collectionOption
+                                )
+                                .setTooltip(
+                                    TranslatableText("mcf-magnets.config.collection.option.pull"),
+                                    TranslatableText("mcf-magnets.config.collection.option.teleport"),
+                                    TranslatableText("mcf-magnets.config.collection.option.inject")
+                                )
+                                .setSaveConsumer { config.collectionOption = it }.build()
                         )
                     setSavingRunnable {
                         ConfigManager.config = config

@@ -1,14 +1,14 @@
 //Fabric Properties
 //Check these on https://modmuss50.me/fabric.html
-val minecraftVersion = "1.18"
-val yarnMappingsVersion = "1.18+build.1"
-val fabricLoaderVersion = "0.12.8"
+val minecraftVersion = "1.18.1"
+val yarnMappingsVersion = "1.18.1+build.5"
+val fabricLoaderVersion = "0.12.12"
 //Fabric api
 val fabricApiVersion = "0.44.0+1.18"
 val loomVersion = "0.10-SNAPSHOT"
 
 //Mod Properties
-val modVersion = "1.1.0"
+val modVersion = "1.2.0"
 val mavenGroupId = "ru.maxvar"
 val archivesBaseName = "mcf-magnets"
 

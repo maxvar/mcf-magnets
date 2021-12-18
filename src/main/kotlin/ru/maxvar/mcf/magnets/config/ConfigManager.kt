@@ -15,7 +15,15 @@ class ConfigManager {
 
         private fun load(): Config {
             LOGGER.info("Loading config from $configPath...")
-            return Json.decodeFromString(Config.serializer(), Files.readString(configPath))
+            val configFromJson = Json.decodeFromString(Config.serializer(), Files.readString(configPath))
+            //upgrade version, match option with older toggle
+            if (configFromJson.version != 2) {
+                LOGGER.info("Upgrading config version...")
+                configFromJson.collectionOption =
+                    if (configFromJson.pull) CollectionOption.PULL else CollectionOption.TELEPORT
+                configFromJson.version = 2
+            }
+            return configFromJson
         }
 
         fun save() {

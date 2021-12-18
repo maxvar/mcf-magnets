@@ -7,6 +7,7 @@ import net.minecraft.entity.MovementType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.math.Box
 import net.minecraft.util.math.Vec3d
+import ru.maxvar.mcf.magnets.config.CollectionOption
 import ru.maxvar.mcf.magnets.config.ConfigManager
 import kotlin.math.absoluteValue
 
@@ -31,20 +32,30 @@ fun tryToCollect(player: PlayerEntity) {
         }
     items.forEach {
         val entityPos: Vec3d = it.pos
-        if (config.pull) {
-            val strength = config.range.toDouble()
-            it.addVelocity(
-                force(playerPos.x - entityPos.x, strength),
-                force(playerPos.y - entityPos.y, strength),
-                force(playerPos.z - entityPos.z, strength)
-            )
-        } else {
-            val movement = Vec3d(
-                playerPos.x - entityPos.x,
-                playerPos.y - entityPos.y,
-                playerPos.z - entityPos.z
-            )
-            it.move(MovementType.SELF, movement)
+        when (config.collectionOption) {
+            CollectionOption.PULL -> {
+                val strength = config.range.toDouble()
+                it.addVelocity(
+                    force(playerPos.x - entityPos.x, strength),
+                    force(playerPos.y - entityPos.y, strength),
+                    force(playerPos.z - entityPos.z, strength)
+                )
+            }
+            CollectionOption.TELEPORT -> {
+                val movement = Vec3d(
+                    playerPos.x - entityPos.x,
+                    playerPos.y - entityPos.y,
+                    playerPos.z - entityPos.z
+                )
+                it.move(MovementType.SELF, movement)
+            }
+            CollectionOption.INJECT -> {
+                //try to put loot into players inventory
+                val playerInventory = player.inventory
+                if (it is ItemEntity) {
+                    playerInventory.insertStack(it.stack)
+                }
+            }
         }
     }
 }
