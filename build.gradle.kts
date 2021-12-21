@@ -8,7 +8,7 @@ val fabricApiVersion = "0.44.0+1.18"
 val loomVersion = "0.10-SNAPSHOT"
 
 //Mod Properties
-val modVersion = "1.2.0"
+val modVersion = "1.2.1"
 val mavenGroupId = "ru.maxvar"
 val archivesBaseName = "mcf-magnets"
 

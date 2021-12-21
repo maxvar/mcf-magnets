@@ -52,8 +52,9 @@ fun tryToCollect(player: PlayerEntity) {
             CollectionOption.INJECT -> {
                 //try to put loot into players inventory
                 val playerInventory = player.inventory
-                if (it is ItemEntity) {
-                    playerInventory.insertStack(it.stack)
+                when (it) {
+                    is ItemEntity -> playerInventory.insertStack(it.stack)
+                    is ExperienceOrbEntity -> it.onPlayerCollision(player)
                 }
             }
         }
