@@ -29,9 +29,9 @@
     "mcf-magnets.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.12.12",
+    "fabricloader": ">=${fabricLoaderVersion}",
     "fabric": "*",
-    "fabric-language-kotlin": ">=1.7.0+kotlin.1.6.0",
-    "minecraft": "1.18.x"
+    "fabric-language-kotlin": ">=${fabricKotlinVersion}",
+    "minecraft": "${minecraftVersion}"
   }
 }

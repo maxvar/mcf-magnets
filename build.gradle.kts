@@ -70,7 +70,12 @@ tasks.compileKotlin {
 tasks.processResources {
     filesMatching("**/fabric.mod.json") {
         println("$sourcePath:$sourceName")
-        expand("version" to modVersion)
+        expand(
+            "version" to modVersion,
+            "minecraftVersion" to minecraftVersion,
+            "fabricLoaderVersion" to fabricLoaderVersion,
+            "fabricKotlinVersion" to fabricKotlinVersion
+        )
     }
 }
 
