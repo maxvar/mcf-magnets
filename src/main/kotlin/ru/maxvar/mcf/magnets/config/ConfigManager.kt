@@ -28,7 +28,6 @@ class ConfigManager {
 
         fun save() {
             LOGGER.info("Saving $MOD_ID config to $configPath...")
-            LOGGER.debug("Config is $config")
             Files.writeString(configPath, Json.encodeToString(Config.serializer(), config))
         }
 
