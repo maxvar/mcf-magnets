@@ -3,7 +3,7 @@
   "id": "mcf-magnets",
   "version": "${version}",
   "name": "mcf-magnets Mod",
-  "description": "collection of magnetic staff to easy items collection",
+  "description": "Simple magnet feature to easy items & XP collection (no ring/enchantment/potion)",
   "authors": [
     "max@maxvar.ru"
   ],
@@ -21,6 +21,12 @@
         "value": "ru.maxvar.mcf.magnets.Mod"
       }
     ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "ru.maxvar.mcf.magnets.ModClient"
+      }
+    ],
     "modmenu": [
       "ru.maxvar.mcf.magnets.config.ModMenuIntegration"
     ]
@@ -31,6 +37,7 @@
   "depends": {
     "fabricloader": ">=${fabricLoaderVersion}",
     "fabric": "*",
+    "fabric-key-binding-api-v1": "*",
     "fabric-language-kotlin": ">=${fabricKotlinVersion}",
     "minecraft": "${minecraftVersion}"
   }

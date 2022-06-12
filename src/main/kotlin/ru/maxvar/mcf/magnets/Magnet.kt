@@ -12,10 +12,9 @@ import ru.maxvar.mcf.magnets.config.ConfigManager
 import kotlin.math.absoluteValue
 
 fun tryToCollect(player: PlayerEntity) {
+    if (!ModClient.magnetEnabled) return
+
     val config = ConfigManager.config
-
-    if (!config.enabled) return
-
     val range = config.range.toDouble()
     val playerPos = player.pos
     val box = Box(
