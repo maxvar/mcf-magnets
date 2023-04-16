@@ -1,11 +1,10 @@
 //Fabric Properties
 //Check these on https://modmuss50.me/fabric.html
-val minecraftVersion = "1.19.3"
-val yarnMappingsVersion = "1.19.3+build.5"
-val fabricLoaderVersion = "0.14.12"
+val minecraftVersion = "1.19.4"
+val yarnMappingsVersion = "1.19.4+build.1"
+val fabricLoaderVersion = "0.14.18"
 //Fabric api
-val fabricApiVersion = "0.72.0+1.19.3"
-val loomVersion = "1.0-SNAPSHOT"
+val fabricApiVersion = "0.76.0+1.19.4"
 
 //Mod Properties
 val modVersion = "1.3.0"
@@ -13,17 +12,17 @@ val mavenGroupId = "ru.maxvar"
 val archivesBaseName = "mcf-magnets"
 
 //Kotlin and fabric-language-kotlin
-val kotlinVersion = "1.8.0"
-val fabricKotlinVersion = "1.9.0+kotlin.1.8.0" //https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
+val kotlinVersion = "1.8.10"
+val fabricKotlinVersion = "1.9.2+kotlin.1.8.10" //https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
 //Mod Dependencies
-val fabricModMenuVersion = "5.0.2" //https://www.curseforge.com/minecraft/mc-mods/modmenu
-val fabricClothConfigVersion = "9.0.94" //https://www.curseforge.com/minecraft/mc-mods/cloth-config
+val fabricModMenuVersion = "6.1.0-rc.4" //https://www.curseforge.com/minecraft/mc-mods/modmenu
+val fabricClothConfigVersion = "10.0.96" //https://www.curseforge.com/minecraft/mc-mods/cloth-config
 
 plugins {
     java
-    kotlin("jvm") version "1.8.0" //match with above kotlinVersion
-    kotlin("plugin.serialization") version "1.8.0" //match with above kotlinVersion
-    id("fabric-loom") version "1.0-SNAPSHOT"
+    kotlin("jvm") version "1.8.10" //match with above kotlinVersion
+    kotlin("plugin.serialization") version "1.8.10" //match with above kotlinVersion
+    id("fabric-loom") version "1.1-SNAPSHOT"
 }
 
 repositories {
@@ -46,7 +45,7 @@ dependencies {
     }
 
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 }
 
 java {
