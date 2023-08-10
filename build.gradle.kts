@@ -1,10 +1,10 @@
 //Fabric Properties
 //Check these on https://modmuss50.me/fabric.html
-val minecraftVersion = "1.19.4"
-val yarnMappingsVersion = "1.19.4+build.1"
-val fabricLoaderVersion = "0.14.18"
+val minecraftVersion = "1.20.1"
+val yarnMappingsVersion = "1.20.1+build.10"
+val fabricLoaderVersion = "0.14.22"
 //Fabric api
-val fabricApiVersion = "0.76.0+1.19.4"
+val fabricApiVersion = "0.86.1+1.20.1"
 
 //Mod Properties
 val modVersion = "1.3.0"
@@ -15,8 +15,8 @@ val archivesBaseName = "mcf-magnets"
 val kotlinVersion = "1.8.10"
 val fabricKotlinVersion = "1.9.2+kotlin.1.8.10" //https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
 //Mod Dependencies
-val fabricModMenuVersion = "6.1.0-rc.4" //https://www.curseforge.com/minecraft/mc-mods/modmenu
-val fabricClothConfigVersion = "10.0.96" //https://www.curseforge.com/minecraft/mc-mods/cloth-config
+val fabricModMenuVersion = "7.2.1" //https://modrinth.com/mod/modmenu/versions?l=fabric
+val fabricClothConfigVersion = "11.1.106" //https://modrinth.com/mod/cloth-config/versions?l=fabric
 
 plugins {
     java
