@@ -40,5 +40,17 @@
     "fabric-key-binding-api-v1": "*",
     "fabric-language-kotlin": ">=${fabricKotlinVersion}",
     "minecraft": "${minecraftVersion}"
+  },
+  "custom": {
+    "modmanager": {
+      "modrinth": "CqV0BjdU"
+    },
+    "mc-publish": {
+      "modrinth": "CqV0BjdU",
+      "loaders": [
+        "fabric"
+      ]
+    }
   }
+
 }
